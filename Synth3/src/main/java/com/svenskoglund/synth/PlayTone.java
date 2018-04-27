@@ -50,7 +50,7 @@ public class PlayTone {
 		while (true) {
 			try {
 				Thread.sleep(20);
-				System.out.println(mp.readScaledAccelerometerValues());
+				System.out.println(mp.readScaledAccelerometerValues()[0] + " " + mp.readScaledAccelerometerValues()[1] + " " + mp.readScaledAccelerometerValues()[2]);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
