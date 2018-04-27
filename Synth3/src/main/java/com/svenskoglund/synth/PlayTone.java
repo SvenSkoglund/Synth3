@@ -47,52 +47,12 @@ public class PlayTone {
 		System.out.println("You should now be hearing a sine wave. ---------");
 
 		// Sleep while the sound is generated in the background.
-		try {
-			double time = synth.getCurrentTime();
-			System.out.println("time = " + time);
-			// Sleep for a few seconds.
-			double i = 0;
-			int counter = 0;
-			int lfo = 550;
-			int upDown = 1;
-			while (true) {
-				counter = 50;
-				i = 0;
-				while (upDown > 0) {
-
-					counter++;
-					Thread.sleep(1);
-					osc.frequency.set(100 + lfo + i++);
-					myFilter.frequency.set(osc.frequency.get());
-
-					if (counter % lfo == 0) {
-						upDown = -1;
-					}
-				}
-
-				counter = 50;
-				i = 0;
-				while (upDown < 0) {
-
-					counter++;
-					Thread.sleep(1);
-					osc.frequency.set(100 + lfo - i++);
-					myFilter.frequency.set(osc.frequency.get());
-
-					if (counter % lfo == 0) {
-						upDown = 1;
-					}
-				}
-			}
+		while (true) {
+			System.out.println(mp.getAccelAccelerations()[0] +" " + mp.getAccelAccelerations()[1] +" " + mp.getAccelAccelerations()[2]);
 		}
-
-		catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-
-		System.out.println("Stop playing. -------------------");
-		// Stop everything.
-		synth.stop();
+//		System.out.println("Stop playing. -------------------");
+//		// Stop everything.
+//		synth.stop();
 	}
 
 	public static void main(String[] args) {
