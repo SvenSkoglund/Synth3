@@ -54,7 +54,7 @@ public class PlayTone {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			osc.frequency.set(mp.readScaledAccelerometerValues()[0]);
+			osc.frequency.set(mp.readScaledAccelerometerValues()[0] * 500);
 
 			System.out.println(mp.readScaledAccelerometerValues()[0] + " " + mp.readScaledAccelerometerValues()[1] + " "
 					+ mp.readScaledAccelerometerValues()[2]);
