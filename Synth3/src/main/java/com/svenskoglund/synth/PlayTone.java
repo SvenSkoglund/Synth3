@@ -48,18 +48,15 @@ public class PlayTone {
 
 		// Sleep while the sound is generated in the background.
 		while (true) {
-			try {
-				Thread.sleep(20);
-				System.out.println(mp.readScaledAccelerometerValues()[0] + " " + mp.readScaledAccelerometerValues()[1] + " " + mp.readScaledAccelerometerValues()[2]);
-				osc.frequency.set(mp.readScaledAccelerometerValues()[0] * 500);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			osc.frequency.set(mp.readScaledAccelerometerValues()[0]);
+
+			System.out.println(mp.readScaledAccelerometerValues()[0] + " " + mp.readScaledAccelerometerValues()[1] + " "
+					+ mp.readScaledAccelerometerValues()[2]);
+
 		}
-//		System.out.println("Stop playing. -------------------");
-//		// Stop everything.
-//		synth.stop();
+		// System.out.println("Stop playing. -------------------");
+		// // Stop everything.
+		// synth.stop();
 	}
 
 	public static void main(String[] args) {
