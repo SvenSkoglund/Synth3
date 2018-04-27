@@ -4,4 +4,4 @@
 //editors/optionsProposals.foreground=208,208,208
 MatchingBrackets.color=68,68,5
 eclipse.preferences.version=1
-overriddenByCSS=,editors/optionsParameters.background,MatchingBrackets.color,editors/optionsProposals.background,editors/optionsParameters.foreground,editors/optionsProposals.foreground,
+overriddenByCSS=,editors/optionsParameters.foreground,editors/optionsProposals.foreground,editors/optionsParameters.background,MatchingBrackets.color,editors/optionsProposals.background,
