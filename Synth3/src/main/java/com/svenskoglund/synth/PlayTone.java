@@ -48,7 +48,13 @@ public class PlayTone {
 
 		// Sleep while the sound is generated in the background.
 		while (true) {
-			System.out.println(mp.getAccelAccelerations()[0] +"--" + mp.getAccelAccelerations()[1] +"--" + mp.getAccelAccelerations()[2]);
+			try {
+				Thread.sleep(20);
+				System.out.println(mp.readScaledAccelerometerValues());
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 //		System.out.println("Stop playing. -------------------");
 //		// Stop everything.
