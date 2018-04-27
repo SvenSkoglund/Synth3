@@ -50,7 +50,7 @@ public class PlayTone {
 		// Sleep while the sound is generated in the background.
 		while (true) {
 			try {
-				Thread.sleep(0);
+				Thread.sleep(50);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
