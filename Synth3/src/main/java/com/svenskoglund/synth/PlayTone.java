@@ -3,6 +3,7 @@ package com.svenskoglund.synth;
 import com.jsyn.JSyn;
 import com.jsyn.unitgen.FilterStateVariable;
 import com.jsyn.unitgen.LineOut;
+import com.jsyn.unitgen.SineOscillator;
 import com.jsyn.unitgen.SquareOscillator;
 
 /**
@@ -13,7 +14,7 @@ import com.jsyn.unitgen.SquareOscillator;
 public class PlayTone {
 	com.jsyn.Synthesizer synth;
 	FilterStateVariable myFilter;
-	SquareOscillator osc;
+	SineOscillator osc;
 	LineOut lineOut;
 
 	private void test() {
@@ -26,7 +27,7 @@ public class PlayTone {
 		synth.start();
 
 		// Add a tone generator.
-		synth.add(osc = new SquareOscillator());
+		synth.add(osc = new SineOscillator());
 		// Add a stereo audio output unit.
 		synth.add(lineOut = new LineOut());
 		synth.add(myFilter = new FilterStateVariable());
@@ -49,12 +50,12 @@ public class PlayTone {
 		// Sleep while the sound is generated in the background.
 		while (true) {
 			try {
-				Thread.sleep(50);
+				Thread.sleep(0);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			osc.frequency.set(mp.readScaledAccelerometerValues()[0] * 500);
+			osc.frequency.set(mp.readScaledAccelerometerValues()[0] * 600);
 
 			System.out.println(mp.readScaledAccelerometerValues()[0] + " " + mp.readScaledAccelerometerValues()[1] + " "
 					+ mp.readScaledAccelerometerValues()[2]);
