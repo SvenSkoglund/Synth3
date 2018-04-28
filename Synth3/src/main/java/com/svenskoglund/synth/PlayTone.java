@@ -67,8 +67,8 @@ public class PlayTone {
 			}
 
 //			Double lfoAmp = mp.readScaledGyroscopeValues()[0];
-			myFilter.frequency.set(mp.readScaledGyroscopeValues()[0]);
-			myFilter.resonance.set(mp.readScaledGyroscopeValues()[1]);
+			myFilter.frequency.set(mp.readScaledGyroscopeValues()[0] * 50 + 500);
+			myFilter.resonance.set(mp.readScaledGyroscopeValues()[1] + 1);
 			osc.frequency.set(mp.readScaledAccelerometerValues()[0] * 50 + 400);
 			System.out.println(osc.frequency.get());
 			// System.out.println(mp.readScaledAccelerometerValues()[0] + " " +
