@@ -4,7 +4,7 @@ import com.jsyn.JSyn;
 import com.jsyn.unitgen.FilterStateVariable;
 import com.jsyn.unitgen.LineOut;
 import com.jsyn.unitgen.SineOscillator;
-o
+
 /**
  * Play a tone using a JSyn oscillator.
  * 
