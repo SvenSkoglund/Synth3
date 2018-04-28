@@ -4,8 +4,7 @@ import com.jsyn.JSyn;
 import com.jsyn.unitgen.FilterStateVariable;
 import com.jsyn.unitgen.LineOut;
 import com.jsyn.unitgen.SineOscillator;
-import com.jsyn.unitgen.SquareOscillator;
-
+o
 /**
  * Play a tone using a JSyn oscillator.
  * 
@@ -16,6 +15,8 @@ public class PlayTone {
 	FilterStateVariable myFilter;
 	SineOscillator osc;
 	LineOut lineOut;
+	SineOscillator lfo;
+	Double lfoAmp;
 
 	private void test() {
 
@@ -28,6 +29,8 @@ public class PlayTone {
 
 		// Add a tone generator.
 		synth.add(osc = new SineOscillator());
+		// Add the lfo
+		synth.add(lfo = new SineOscillator());
 		// Add a stereo audio output unit.
 		synth.add(lineOut = new LineOut());
 		synth.add(myFilter = new FilterStateVariable());
@@ -48,6 +51,8 @@ public class PlayTone {
 		System.out.println("You should now be hearing a sine wave. ---------");
 
 		// Sleep while the sound is generated in the background.
+		lfo.frequency.set(5);
+		
 		while (true) {
 			try {
 				Thread.sleep(50);
@@ -55,8 +60,12 @@ public class PlayTone {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			osc.frequency.set(mp.readScaledAccelerometerValues()[0] * 25 + 400);
-
+			
+			Double lfoAmp =  mp.readScaledGyroscopeValues()[0];
+			lfo.amplitude.set(lfoAmp);
+			System.out.println(lfo.frequency.getValue());
+		
+			osc.frequency.set(mp.readScaledAccelerometerValues()[0] * 25 + 400 + lfoAmp);
 			System.out.println(mp.readScaledAccelerometerValues()[0] + " " + mp.readScaledAccelerometerValues()[1] + " "
 					+ mp.readScaledAccelerometerValues()[2]);
 
