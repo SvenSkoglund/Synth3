@@ -66,9 +66,8 @@ public class PlayTone {
 				e.printStackTrace();
 			}
 
-			Double lfoAmp = mp.readScaledGyroscopeValues()[0];
-			lfo.amplitude.set(lfoAmp);
-			osc.frequency.set(mp.readScaledAccelerometerValues()[0] * 25 + 400 + lfoAmp);
+//			Double lfoAmp = mp.readScaledGyroscopeValues()[0];
+			osc.frequency.set(mp.readScaledAccelerometerValues()[0] * 25 + 400);
 			System.out.println(osc.frequency.get());
 			// System.out.println(mp.readScaledAccelerometerValues()[0] + " " +
 			// mp.readScaledAccelerometerValues()[1] + " "
