@@ -30,6 +30,7 @@ public class PlayTone {
 		synth.start();
 
 		// Add a tone generator, lfo, filter, and line out.
+		synth.add(freqAdder = new Add());
 		synth.add(osc = new SineOscillator());
 		synth.add(lfo = new SineOscillator());
 		synth.add(myFilter = new FilterStateVariable());
