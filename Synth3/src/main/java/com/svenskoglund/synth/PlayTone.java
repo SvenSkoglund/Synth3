@@ -2,6 +2,7 @@ package com.svenskoglund.synth;
 
 import com.jsyn.JSyn;
 import com.jsyn.unitgen.Add;
+import com.jsyn.unitgen.FilterLowPass;
 import com.jsyn.unitgen.FilterStateVariable;
 import com.jsyn.unitgen.LineOut;
 import com.jsyn.unitgen.SineOscillator;
@@ -13,7 +14,7 @@ import com.jsyn.unitgen.SineOscillator;
  */
 public class PlayTone {
 	com.jsyn.Synthesizer synth;
-	FilterStateVariable myFilter;
+	FilterLowPass myFilter;
 	SineOscillator osc;
 	LineOut lineOut;
 	SineOscillator lfo;
@@ -33,13 +34,13 @@ public class PlayTone {
 		synth.add(freqAdder = new Add());
 		synth.add(osc = new SineOscillator());
 		synth.add(lfo = new SineOscillator());
-		synth.add(myFilter = new FilterStateVariable());
+		synth.add(myFilter = new FilterLowPass());
 		synth.add(lineOut = new LineOut());
 		// connect osc -> lfo
 		osc.output.connect(freqAdder.inputA);
 		freqAdder.output.connect(lfo.frequency);
 		// connect lfo -> output
-		myFilter.lowPass.connect(lineOut.input);
+		myFilter.output.connect((lineOut.input));;
 		lfo.output.connect(0, myFilter.input, 0);
 		// Connect the oscillator to both channels of the output.
 		// osc.output.connect(0, myFilter.input, 1);
@@ -67,8 +68,8 @@ public class PlayTone {
 			}
 
 //			Double lfoAmp = mp.readScaledGyroscopeValues()[0];
-			myFilter.frequency.set(mp.readScaledGyroscopeValues()[0] * 50 + 500);
-			myFilter.resonance.set(mp.readScaledGyroscopeValues()[1] + 1);
+			myFilter.frequency.set(mp.readScaledGyroscopeValues()[0] * 50 + 500);;
+//			myFilter.set.set(mp.readScaledGyroscopeValues()[1] + 1);
 			osc.frequency.set(mp.readScaledAccelerometerValues()[0] * 50 + 400);
 			System.out.println(osc.frequency.get());
 			// System.out.println(mp.readScaledAccelerometerValues()[0] + " " +
