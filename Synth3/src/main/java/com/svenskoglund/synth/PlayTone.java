@@ -1,6 +1,7 @@
 package com.svenskoglund.synth;
 
 import com.jsyn.JSyn;
+import com.jsyn.unitgen.Add;
 import com.jsyn.unitgen.FilterStateVariable;
 import com.jsyn.unitgen.LineOut;
 import com.jsyn.unitgen.SineOscillator;
@@ -17,6 +18,7 @@ public class PlayTone {
 	LineOut lineOut;
 	SineOscillator lfo;
 	Double lfoAmp;
+	Add freqAdder;
 
 	private void test() {
 
@@ -27,16 +29,18 @@ public class PlayTone {
 		// Start synthesizer using default stereo output at 44100 Hz.
 		synth.start();
 
-		// Add a tone generator.
+		// Add a tone generator, lfo, filter, and line out.
 		synth.add(osc = new SineOscillator());
-		// Add the lfo
 		synth.add(lfo = new SineOscillator());
-		// Add a stereo audio output unit.
-		synth.add(lineOut = new LineOut());
 		synth.add(myFilter = new FilterStateVariable());
+		synth.add(lineOut = new LineOut());
+		// connect osc -> lfo
+		osc.output.connect(freqAdder.inputA);
+		freqAdder.output.connect(lfo.frequency);
+		// connect lfo -> output
 		myFilter.lowPass.connect(lineOut.input);
+		lfo.output.connect(0, myFilter.input, 0);
 		// Connect the oscillator to both channels of the output.
-		osc.output.connect(0, myFilter.input, 0);
 		// osc.output.connect(0, myFilter.input, 1);
 		myFilter.output.connect(0, lineOut.input, 0); /* Left side */
 		myFilter.output.connect(0, lineOut.input, 1);
@@ -52,7 +56,7 @@ public class PlayTone {
 
 		// Sleep while the sound is generated in the background.
 		lfo.frequency.set(5);
-		
+
 		while (true) {
 			try {
 				Thread.sleep(50);
@@ -60,14 +64,14 @@ public class PlayTone {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-			Double lfoAmp =  mp.readScaledGyroscopeValues()[0];
+
+			Double lfoAmp = mp.readScaledGyroscopeValues()[0];
 			lfo.amplitude.set(lfoAmp);
-			System.out.println(lfo.frequency.get());
-		
 			osc.frequency.set(mp.readScaledAccelerometerValues()[0] * 25 + 400 + lfoAmp);
-			System.out.println(mp.readScaledAccelerometerValues()[0] + " " + mp.readScaledAccelerometerValues()[1] + " "
-					+ mp.readScaledAccelerometerValues()[2]);
+			System.out.println(osc.frequency.get());
+			// System.out.println(mp.readScaledAccelerometerValues()[0] + " " +
+			// mp.readScaledAccelerometerValues()[1] + " "
+			// + mp.readScaledAccelerometerValues()[2]);
 
 		}
 		// System.out.println("Stop playing. -------------------");
