@@ -37,8 +37,8 @@ public class PlayTone {
 		synth.add(myFilter = new FilterLowPass());
 		synth.add(lineOut = new LineOut());
 		// connect osc -> lfo
-		osc.output.connect(freqAdder.inputA);
-		freqAdder.output.connect(lfo.frequency);
+		osc.output.connect(myFilter.input);
+//		freqAdder.output.connect(lfo.frequency);
 		// connect lfo -> output
 		myFilter.output.connect((lineOut.input));;
 		lfo.output.connect(0, myFilter.input, 0);
