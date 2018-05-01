@@ -25,5 +25,4 @@ INDEX VERSION 1.130+/Users/svenskogland/Desktop/Synth3/.metadata/.plugins/org.ec
 3404917195.index
 2040141961.index
 2918727983.index
-1085583081.index
 1271342938.index

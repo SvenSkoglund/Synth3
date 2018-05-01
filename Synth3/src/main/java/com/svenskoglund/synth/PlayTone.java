@@ -38,9 +38,10 @@ public class PlayTone {
 		synth.add(lineOut = new LineOut());
 		// connect osc -> lfo
 		osc.output.connect(myFilter.input);
-//		freqAdder.output.connect(lfo.frequency);
+		// freqAdder.output.connect(lfo.frequency);
 		// connect lfo -> output
-		myFilter.output.connect((lineOut.input));;
+		myFilter.output.connect((lineOut.input));
+		;
 		lfo.output.connect(0, myFilter.input, 0);
 		// Connect the oscillator to both channels of the output.
 		// osc.output.connect(0, myFilter.input, 1);
@@ -67,10 +68,11 @@ public class PlayTone {
 				e.printStackTrace();
 			}
 
-//			Double lfoAmp = mp.readScaledGyroscopeValues()[0];
-			myFilter.frequency.set(Math.abs((mp.readScaledGyroscopeValues()[0]*50 + 500)));;
-//			myFilter.set.set(mp.readScaledGyroscopeValues()[1] + 1);
-			vertChange += mp.readScaledAccelerometerValues()[0] * 100;
+			// Double lfoAmp = mp.readScaledGyroscopeValues()[0];
+			myFilter.frequency.set(Math.abs((mp.readScaledGyroscopeValues()[0] * 50 + 500)));
+			;
+			// myFilter.set.set(mp.readScaledGyroscopeValues()[1] + 1);
+			vertChange += .5 * (mp.readScaledAccelerometerValues()[0]) * (mp.readScaledAccelerometerValues()[0]) * 100;
 			osc.frequency.set(vertChange + 400);
 			System.out.println(myFilter.frequency.get() + "----" + osc.frequency.get());
 			// System.out.println(mp.readScaledAccelerometerValues()[0] + " " +
