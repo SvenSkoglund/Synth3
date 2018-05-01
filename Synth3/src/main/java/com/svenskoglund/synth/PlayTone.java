@@ -72,9 +72,9 @@ public class PlayTone {
 			myFilter.frequency.set(Math.abs((mp.readScaledGyroscopeValues()[0] * 50 + 500)));
 			;
 			// myFilter.set.set(mp.readScaledGyroscopeValues()[1] + 1);
-			vertChange += .5 * (mp.readScaledAccelerometerValues()[0]) * (mp.readScaledAccelerometerValues()[0]) * 200;
+			vertChange += .5 * (mp.readScaledAccelerometerValues()[0]) * (mp.readScaledAccelerometerValues()[0]) * 500;
 			osc.frequency.set(vertChange + 400);
-			System.out.println(myFilter.frequency.get() + "----" + osc.frequency.get());
+			System.out.println(osc.frequency.get());
 			// System.out.println(mp.readScaledAccelerometerValues()[0] + " " +
 			// mp.readScaledAccelerometerValues()[1] + " "
 			// + mp.readScaledAccelerometerValues()[2]);
