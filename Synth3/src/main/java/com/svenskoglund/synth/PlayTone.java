@@ -3,9 +3,9 @@ package com.svenskoglund.synth;
 import com.jsyn.JSyn;
 import com.jsyn.unitgen.Add;
 import com.jsyn.unitgen.FilterLowPass;
-import com.jsyn.unitgen.FilterStateVariable;
 import com.jsyn.unitgen.LineOut;
 import com.jsyn.unitgen.SineOscillator;
+import com.jsyn.unitgen.SquareOscillator;
 
 /**
  * Play a tone using a JSyn oscillator.
@@ -15,7 +15,7 @@ import com.jsyn.unitgen.SineOscillator;
 public class PlayTone {
 	com.jsyn.Synthesizer synth;
 	FilterLowPass myFilter;
-	SineOscillator osc;
+	SquareOscillator osc;
 	LineOut lineOut;
 	SineOscillator lfo;
 	Double lfoAmp;
@@ -32,7 +32,7 @@ public class PlayTone {
 
 		// Add a tone generator, lfo, filter, and line out.
 		synth.add(freqAdder = new Add());
-		synth.add(osc = new SineOscillator());
+		synth.add(osc = new SquareOscillator());
 		synth.add(lfo = new SineOscillator());
 		synth.add(myFilter = new FilterLowPass());
 		synth.add(lineOut = new LineOut());
