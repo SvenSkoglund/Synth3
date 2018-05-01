@@ -61,12 +61,12 @@ public class PlayTone {
 		lfo.frequency.set(5);
 		double vertChange = 0;
 		while (true) {
-			try {
-				Thread.sleep(50);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+//			try {
+//				Thread.sleep(50);
+//			} catch (InterruptedException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
 
 			// Double lfoAmp = mp.readScaledGyroscopeValues()[0];
 			myFilter.frequency.set(Math.abs((mp.readScaledGyroscopeValues()[0] * 50 + 500)));
