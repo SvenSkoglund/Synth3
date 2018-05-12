@@ -1,11 +1,16 @@
 package com.svenskoglund.synth;
 
+import java.io.IOException;
+
 import com.jsyn.JSyn;
 import com.jsyn.unitgen.Add;
 import com.jsyn.unitgen.FilterLowPass;
 import com.jsyn.unitgen.LineOut;
 import com.jsyn.unitgen.SineOscillator;
 import com.jsyn.unitgen.SquareOscillator;
+
+import wiiremotej.WiiRemote;
+import wiiremotej.WiiRemoteJ;
 
 /**
  * Play a tone using a JSyn oscillator.
@@ -20,10 +25,25 @@ public class PlayTone {
 	SineOscillator lfo;
 	Double lfoAmp;
 	Add freqAdder;
+	WiiRemote wm;
 
 	private void test() {
-
-		MPU6050 mp = new MPU6050();
+		WiiRemoteJ rmj = new WiiRemoteJ();
+		try {
+			WiiRemote wm =rmj.findRemote();
+		} catch (IllegalStateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+//		MPU6050 mp = new MPU6050();
 		// Create a context for the synthesizer.
 		synth = JSyn.createSynthesizer();
 
@@ -69,11 +89,11 @@ public class PlayTone {
 //			}
 
 			// Double lfoAmp = mp.readScaledGyroscopeValues()[0];
-			myFilter.frequency.set(Math.abs((mp.readScaledGyroscopeValues()[0] * 50 + 500)));
-			
-			vertChange += (mp.getAccelAccelerations()[0]) * (mp.getAccelAccelerations()[0]) * 1000;
-			osc.frequency.set((vertChange + 400)*4);
-			System.out.println(osc.frequency.get());
+//			myFilter.frequency.set(Math.abs((mp.readScaledGyroscopeValues()[0] * 50 + 500)));
+//			
+//			vertChange += (mp.getAccelAccelerations()[0]) * (mp.getAccelAccelerations()[0]) * 1000;
+//			osc.frequency.set((vertChange + 400)*4);
+			System.out.println(wm.getInputReport());
 
 		}
 		// System.out.println("Stop playing. -------------------");
